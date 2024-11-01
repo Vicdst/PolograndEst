@@ -1,0 +1,55 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f0f8ff; /* Fond léger pour contraster avec les autres éléments */
+}
+
+header {
+    text-align: center;
+}
+
+.header-photo {
+    width: 100%;
+    height: auto;
+}
+
+main {
+    padding: 20px;
+}
+
+.description {
+    margin-bottom: 30px;
+}
+
+h1, h2 {
+    color: #005b96; /* Bleu foncé du Grand Est */
+}
+
+.matches, .joueurs {
+    margin-bottom: 30px;
+}
+
+.joueur {
+    display: flex;
+    align-items: center;
+    margin: 10px 0;
+}
+
+.photo-joueur {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    margin-right: 10px;
+}
+
+footer {
+    text-align: center;
+    padding: 10px;
+    background-color: #f44336; /* Rouge du Grand Est */
+    color: white;
+}
+
+.footer-text {
+    font-size: 12px;
+}
