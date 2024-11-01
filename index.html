@@ -8,7 +8,7 @@
 </head>
 <body>
     <header>
-        <img src="photo-equipe.jpg" alt="Photo de l'équipe" class="header-photo">
+        <img id="header-photo" alt="Photo de l'équipe" class="header-photo">
         <h1 class="team-title">Équipe de Kayak Polo du Grand-EST</h1>
     </header>
     <main>
@@ -37,5 +37,17 @@
     <footer>
         <p class="footer-text">Site non officiel Made with love by the number 3</p>
     </footer>
+
+    <!-- Script pour changer l'image aléatoirement -->
+    <script>
+        // Tableau contenant les chemins des images
+        const images = ["photoequipe1.jpg", "photoequipe2.jpg", "photoequipe3.jpg"];
+        
+        // Sélection aléatoire d'une image
+        const randomImage = images[Math.floor(Math.random() * images.length)];
+        
+        // Modification de l'attribut 'src' de l'image
+        document.getElementById("header-photo").src = randomImage;
+    </script>
 </body>
 </html>
