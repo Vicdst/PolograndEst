@@ -18,25 +18,28 @@
   <link rel="stylesheet" href="css/style.css">
 
   <style>
+    /* Modification pour permettre le défilement */
     body {
-      overflow: hidden; /* Prevents scrollbars */
+      position: relative; /* Pour que les flocons de neige soient positionnés par rapport au corps */
+      background-color: #282c34; /* Fond sombre pour les flocons */
+      color: white; /* Couleur du texte pour la lisibilité */
     }
 
     .snowflake {
       position: absolute;
-      top: -10px; /* Start above the viewport */
-      color: white; /* Snowflake color */
-      font-size: 1em; /* Size of the snowflakes */
-      pointer-events: none; /* Makes snowflakes unclickable */
-      animation: fall linear infinite; /* Animation for falling */
+      top: -10px; /* Commencer au-dessus de la vue */
+      color: white; /* Couleur des flocons de neige */
+      font-size: 1em; /* Taille des flocons de neige */
+      pointer-events: none; /* Rendre les flocons de neige non cliquables */
+      animation: fall linear infinite; /* Animation pour tomber */
     }
 
     @keyframes fall {
       0% {
-        transform: translateY(0); /* Start from top */
+        transform: translateY(0); /* Commencer en haut */
       }
       100% {
-        transform: translateY(100vh); /* Fall to the bottom of the viewport */
+        transform: translateY(100vh); /* Tomber jusqu'en bas de la vue */
       }
     }
   </style>
