@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lecteur MP3 - KCT</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            background-color: #f0f0f0;
+            padding-top: 50px;
+        }
+        .player {
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            display: inline-block;
+        }
+        button {
+            margin: 5px;
+            padding: 10px 20px;
+            font-size: 16px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        #play {
+            background-color: #28a745;
+            color: white;
+        }
+        #pause {
+            background-color: #ffc107;
+            color: white;
+        }
+        #stop {
+            background-color: #dc3545;
+            color: white;
+        }
+    </style>
+</head>
+<body>
+    <div class="player">
+        <h1>Lecteur MP3 - KCT</h1>
+        <audio id="audio" src="KCT.mp3"></audio>
+        <div>
+            <button id="play">Lecture</button>
+            <button id="pause">Pause</button>
+            <button id="stop">Arrêter</button>
+        </div>
+    </div>
+
+    <script>
+        const audio = document.getElementById('audio');
+        const playButton = document.getElementById('play');
+        const pauseButton = document.getElementById('pause');
+        const stopButton = document.getElementById('stop');
+
+        playButton.addEventListener('click', () => {
+            audio.play();
+        });
+
+        pauseButton.addEventListener('click', () => {
+            audio.pause();
+        });
+
+        stopButton.addEventListener('click', () => {
+            audio.pause();
+            audio.currentTime = 0;
+        });
+    </script>
+</body>
+</html>
