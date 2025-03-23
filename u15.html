@@ -8,27 +8,68 @@
         body {
             font-family: Arial, sans-serif;
             text-align: center;
+            margin: 0;
+            padding: 10px;
+            background-color: #f8f8f8;
         }
+
+        h1 {
+            font-size: 22px;
+            margin-bottom: 10px;
+        }
+
+        #next-match {
+            font-size: 18px;
+            font-weight: bold;
+            margin-bottom: 15px;
+            color: #333;
+        }
+
+        .table-container {
+            overflow-x: auto; /* Permet le défilement horizontal sur mobile */
+            margin: 0 auto;
+            max-width: 100%;
+        }
+
         table {
-            width: 80%;
-            margin: auto;
+            width: 100%;
+            min-width: 600px; /* Évite que les colonnes soient trop compactes sur mobile */
             border-collapse: collapse;
+            background: white;
         }
+
         th, td {
             border: 1px solid black;
-            padding: 8px;
+            padding: 10px;
             text-align: center;
+            white-space: nowrap; /* Évite les sauts de ligne inutiles */
         }
+
         th {
             background-color: #f4f4f4;
+            font-size: 14px;
         }
+
+        td {
+            font-size: 14px;
+        }
+
         .joue { background-color: #87CEFA; } /* Bleu clair */
         .arbitre { background-color: #FFB6C1; } /* Rose */
         .past { text-decoration: line-through; color: grey; }
-        #next-match {
-            font-size: 20px;
-            font-weight: bold;
-            margin: 20px;
+
+        /* Ajustements pour téléphone */
+        @media screen and (max-width: 768px) {
+            h1 {
+                font-size: 20px;
+            }
+            #next-match {
+                font-size: 16px;
+            }
+            th, td {
+                padding: 8px;
+                font-size: 12px;
+            }
         }
     </style>
 </head>
@@ -37,21 +78,23 @@
     <h1>Matchs de Kayak-Polo</h1>
     <p id="next-match">Prochain match dans : <span id="countdown"></span></p>
 
-    <table id="matchTable">
-        <thead>
-            <tr>
-                <th>Date</th>
-                <th>Heure</th>
-                <th>Terrain</th>
-                <th>Équipe 1</th>
-                <th>Équipe 2</th>
-                <th>Rôle</th>
-            </tr>
-        </thead>
-        <tbody>
-            <!-- Les lignes seront générées dynamiquement -->
-        </tbody>
-    </table>
+    <div class="table-container">
+        <table id="matchTable">
+            <thead>
+                <tr>
+                    <th>Date</th>
+                    <th>Heure</th>
+                    <th>Terrain</th>
+                    <th>Équipe 1</th>
+                    <th>Équipe 2</th>
+                    <th>Rôle</th>
+                </tr>
+            </thead>
+            <tbody>
+                <!-- Les lignes seront générées dynamiquement -->
+            </tbody>
+        </table>
+    </div>
 
     <script>
         // Données des matchs (Format: [Date, Heure, Terrain, Équipe 1, Équipe 2, Rôle])
