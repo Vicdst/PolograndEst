@@ -1,10 +1,58 @@
 <!DOCTYPE html>
-<html lang="en">
-
+<html lang="fr">
 <head>
+  <meta charset="UTF-8">
   <title>Polo Grand-EST</title>
-  <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  
+  <!-- STYLES DIGICODE -->
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Montserrat', sans-serif;
+    }
+    #lock-screen {
+      position: fixed;
+      top: 0; left: 0;
+      width: 100vw; height: 100vh;
+      background: #111;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      color: white;
+      z-index: 9999;
+    }
+    .keypad {
+      display: grid;
+      grid-template-columns: repeat(3, 80px);
+      gap: 10px;
+      margin-top: 20px;
+    }
+    .keypad button {
+      font-size: 24px;
+      padding: 20px;
+      background-color: #333;
+      color: white;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: background 0.2s;
+    }
+    .keypad button:hover {
+      background-color: #555;
+    }
+    #code {
+      font-size: 32px;
+      letter-spacing: 10px;
+      margin-bottom: 10px;
+    }
+    #main-content {
+      display: none;
+    }
+  </style>
+
+  <!-- TES STYLES -->
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="fonts/icomoon/style.css">
   <link rel="stylesheet" href="css/bootstrap/bootstrap.css">
@@ -16,6 +64,162 @@
   <link rel="stylesheet" href="fonts/flaticon/font/flaticon.css">
   <link rel="stylesheet" href="css/aos.css">
   <link rel="stylesheet" href="css/style.css">
+</head>
+
+<body>
+
+  <!-- ÉCRAN DE VERROUILLAGE -->
+  <div id="lock-screen">
+    <h2>Entrez le code</h2>
+    <div id="code">____</div>
+    <div class="keypad" id="keypad"></div>
+  </div>
+
+  <!-- CONTENU PRINCIPAL CACHÉ AU DÉPART -->
+  <div id="main-content">
+    <div class="site-wrap">
+      <header class="site-navbar py-4" role="banner">
+        <div class="container">
+          <div class="d-flex align-items-center">
+            <div class="site-logo">
+              <a href="index.html">
+                <img src="images/logo.png" alt="Logo">
+              </a>
+            </div>
+            <div class="ml-auto">
+              <a href="#" class="d-inline-block d-lg-none site-menu-toggle js-menu-toggle text-black float-right text-white">
+                <span class="icon-menu h3 text-white"></span>
+              </a>
+            </div>
+          </div>
+        </div>
+      </header>
+
+      <div class="hero overlay" style="background-image: url('images/bg_3.jpg');">
+        <div class="container">
+          <div class="row align-items-center">
+            <div class="col-lg-5 ml-auto">
+              <h1 class="text-white">Équipe Polo Grand-EST</h1>
+              <p>Le Grand-EST dispose de 2 équipes en championnat de France en U15 et U18.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="container my-5">
+        <div class="event text-center">
+          <h2>Troisième journée du championnat</h2>
+          <p>À Corebiel Corbeil-Essonnes le 24 et 25 Mai</p>
+          <img src="images/event_image.png" alt="Championnat de France" class="img-fluid mb-3" style="max-width: 600px;">
+          <h3>Début dans : <span id="countdown"></span></h3>
+        </div>
+      </div>
+
+      <div class="container">
+        <h2 class="text-center my-4"></h2>
+        <ul class="list-group">
+          <li class="list-group-item">Première manche Championnat de France - Avranches (29-30 Mars 2025) <span id="countdown2"></span></li>
+        </ul>
+      </div>
+
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-12">
+            <div class="d-flex team-vs">
+              <div class="team-1 w-50">
+                <div class="team-details w-100 text-center">
+                  <h3>U15</h3>
+                  <ul class="list-unstyled">
+                    <li>Célian DUVAUX (1)</li>
+                    <li>Zoé CAMPANALS (2)</li>
+                    <li>Victor DOUSSOT (3)</li>
+                    <li>Joseph VIEILLARD B4RON (4)</li>
+                    <li>Nathanaël BROCHAIN (5)</li>
+                    <li>Cléa MAZET (6)</li>
+                    <li>Anaïs GRANELLA (7)</li>
+                    <li>Antonin MULLER (8)</li>
+                  </ul>
+                </div>
+              </div>
+              <div class="team-2 w-50">
+                <div class="team-details w-100 text-center">
+                  <h3>U18</h3>
+                  <ul class="list-unstyled">
+                    <li>Camille RODICQ (1)</li>
+                    <li>Louise LIMONIER (2)</li>
+                    <li>Tristant GUÉGAN (3)</li>
+                    <li>Loane CHARTON (4)</li>
+                    <li>Louka RICHER (5)</li>
+                    <li>Oscar HUNEAU (6)</li>
+                    <li>MOREL Raphael (7)</li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <footer>
+        <div class="row text-center">
+          <div class="col-md-12">
+            <div class="pt-5">
+              <p>
+                Copyright &copy;
+                <script>
+                  document.write(new Date().getFullYear());
+                </script> All rights reserved | Vicdst made this with <3 | Unofficial website
+              </p>
+            </div>
+          </div>
+        </div>
+      </footer>
+    </div>
+  </div>
+
+  <!-- SCRIPT DIGICODE -->
+  <script>
+    const codeSecret = "4520";
+    let inputCode = "";
+
+    const keypad = document.getElementById("keypad");
+    const codeDisplay = document.getElementById("code");
+
+    function updateDisplay() {
+      codeDisplay.innerText = inputCode.padEnd(4, "_");
+    }
+
+    function handleKeyPress(num) {
+      if (inputCode.length < 4) {
+        inputCode += num;
+        updateDisplay();
+      }
+      if (inputCode.length === 4) {
+        if (inputCode === codeSecret) {
+          document.getElementById("lock-screen").style.display = "none";
+          document.getElementById("main-content").style.display = "block";
+        } else {
+          codeDisplay.innerText = "❌ Faux !";
+          setTimeout(() => {
+            inputCode = "";
+            updateDisplay();
+          }, 1000);
+        }
+      }
+    }
+
+    const numbers = [1, 2, 3, 4, 5, 6, 7, 8, 9, 0];
+    numbers.forEach(num => {
+      const btn = document.createElement("button");
+      btn.innerText = num;
+      btn.onclick = () => handleKeyPress(num.toString());
+      keypad.appendChild(btn);
+    });
+
+    updateDisplay();
+  </script>
+
+  <!-- SCRIPT COMPTE À REBOURS -->
   <script>
     function updateCountdown() {
       const eventDate = new Date("May 24, 2025 00:00:00").getTime();
@@ -28,113 +232,15 @@
       const seconds = Math.floor((distance % (1000 * 60)) / 1000);
 
       document.getElementById("countdown").innerHTML = days + "j " + hours + "h " + minutes + "m " + seconds + "s ";
+      document.getElementById("countdown2").innerHTML = days + "j " + hours + "h " + minutes + "m " + seconds + "s ";
 
       if (distance < 0) {
         document.getElementById("countdown").innerHTML = "Événement en cours";
+        document.getElementById("countdown2").innerHTML = "Événement passé";
       }
     }
+
     setInterval(updateCountdown, 1000);
   </script>
-</head>
-
-<body>
-  <div class="site-wrap">
-    <header class="site-navbar py-4" role="banner">
-      <div class="container">
-        <div class="d-flex align-items-center">
-          <div class="site-logo">
-            <a href="index.html">
-              <img src="images/logo.png" alt="Logo">
-            </a>
-          </div>
-          <div class="ml-auto">
-            <a href="#" class="d-inline-block d-lg-none site-menu-toggle js-menu-toggle text-black float-right text-white">
-              <span class="icon-menu h3 text-white"></span>
-            </a>
-          </div>
-        </div>
-      </div>
-    </header>
-
-    <div class="hero overlay" style="background-image: url('images/bg_3.jpg');">
-      <div class="container">
-        <div class="row align-items-center">
-          <div class="col-lg-5 ml-auto">
-            <h1 class="text-white">Équipe Polo Grand-EST</h1>
-            <p>Le Grand-EST dispose de 2 équipes en championnat de France en U15 et U18.</p>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <div class="container my-5">
-      <div class="event text-center">
-        <h2>Troisième journée du championnat</h2>
-        <p>À Corebiel Corbeil-Essonnes le 24 et 25 Mai</p>
-        <img src="images/event_image.png" alt="Championnat de France" class="img-fluid mb-3" style="max-width: 600px;">
-        <h3>Début dans : <span id="countdown"></span></h3>
-      </div>
-    </div>
-
-    <div class="container">
-      <h2 class="text-center my-4"></h2>
-      <ul class="list-group">
-        <li class="list-group-item">Première manche Championnat de France - Avranches (29-30 Mars 2025) <span id="countdown"></span></li>
-      </ul>
-    </div>
-
-    <div class="container">
-      <div class="row">
-        <div class="col-lg-12">
-          <div class="d-flex team-vs">
-            <div class="team-1 w-50">
-              <div class="team-details w-100 text-center">
-                <h3>U15</h3>
-                <ul class="list-unstyled">
-                  <li>Célian DUVAUX (1)</li>
-                  <li>Zoé CAMPANALS (2)</li>
-                  <li>Victor DOUSSOT (3)</li>
-                  <li>Joseph VIEILLARD B4RON (4)</li>
-                  <li>Nathanaël BROCHAIN (5)</li>
-                  <li>Cléa MAZET (6)</li>
-                  <li>Anaïs GRANELLA (7)</li>
-                  <li>Antonin MULLER (8)</li>
-                </ul>
-              </div>
-            </div>
-            <div class="team-2 w-50">
-              <div class="team-details w-100 text-center">
-                <h3>U18</h3>
-                <ul class="list-unstyled">
-                  <li>Camille RODICQ (1)</li>
-                  <li>Louise LIMONIER (2)</li>
-                  <li>Tristant GUÉGAN (3)</li>
-                  <li>Loane CHARTON (4)</li>
-                  <li>Louka RICHER (5)</li>
-                  <li>Oscar HUNEAU (6)</li>
-                  <li>MOREL Raphael (7)</li>
-                </ul>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <footer>
-      <div class="row text-center">
-        <div class="col-md-12">
-          <div class="pt-5">
-            <p>
-              Copyright &copy;
-              <script>
-                document.write(new Date().getFullYear());
-              </script> All rights reserved | Vicdst made this with <3 | Unofficial website
-            </p>
-          </div>
-        </div>
-      </div>
-    </footer>
-  </div>
 </body>
 </html>
