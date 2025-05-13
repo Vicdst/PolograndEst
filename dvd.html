@@ -18,6 +18,8 @@
       position: relative;
       width: 100%;
       height: 100%;
+      border: 5px solid black; /* Bord noir visible autour de l'écran */
+      box-sizing: border-box;
     }
 
     #logo {
@@ -38,10 +40,10 @@
     const logoWidth = logo.width;
     const logoHeight = logo.height;
 
-    let x = Math.random() * (window.innerWidth - logoWidth); // Position X initiale aléatoire
-    let y = Math.random() * (window.innerHeight - logoHeight); // Position Y initiale aléatoire
+    let x = Math.random() * (window.innerWidth - logoWidth - 10); // Position X initiale aléatoire
+    let y = Math.random() * (window.innerHeight - logoHeight - 10); // Position Y initiale aléatoire
     let angle = Math.random() * 2 * Math.PI; // Angle initial aléatoire
-    let speed = 21; // Vitesse de déplacement du logo
+    let speed = 5; // Vitesse de déplacement du logo
     let dx = Math.cos(angle) * speed; // Vitesse en X
     let dy = Math.sin(angle) * speed; // Vitesse en Y
 
@@ -52,13 +54,13 @@
       y += dy;
 
       // Collision avec les bords de l'écran (rebond)
-      if (x <= 0 || x >= window.innerWidth - logoWidth) {
+      if (x <= 5 || x >= window.innerWidth - logoWidth - 5) {
         dx = -dx; // Inverse la direction horizontale
         angle = Math.random() * 2 * Math.PI; // Change l'angle
         dx = Math.cos(angle) * speed; // Applique le nouvel angle
       }
 
-      if (y <= 0 || y >= window.innerHeight - logoHeight) {
+      if (y <= 5 || y >= window.innerHeight - logoHeight - 5) {
         dy = -dy; // Inverse la direction verticale
         angle = Math.random() * 2 * Math.PI; // Change l'angle
         dy = Math.sin(angle) * speed; // Applique le nouvel angle
