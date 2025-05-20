@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Tableaux Google Sheets</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      padding: 20px;
+      background-color: #f9f9f9;
+    }
+    h1 {
+      text-align: center;
+    }
+    .chart-container {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 20px;
+      margin-top: 30px;
+    }
+    iframe {
+      border: none;
+    }
+  </style>
+</head>
+<body>
+  <h1>Visualisation des Données</h1>
+  <div class="chart-container">
+    <iframe width="453" height="360" seamless frameborder="0" scrolling="no" src="https://docs.google.com/spreadsheets/d/e/2PACX-1vQFCnsZctbSN060ChnQRBfxFJUpu8SZnHdpeam-tP5wLCa1QKd8D_M668p70daVUmli9C31dFBJnS17/pubchart?oid=199060672&amp;format=image"></iframe>
+    <iframe width="453" height="360" seamless frameborder="0" scrolling="no" src="https://docs.google.com/spreadsheets/d/e/2PACX-1vQFCnsZctbSN060ChnQRBfxFJUpu8SZnHdpeam-tP5wLCa1QKd8D_M668p70daVUmli9C31dFBJnS17/pubchart?oid=469144921&amp;format=image"></iframe>
+  </div>
+</body>
+</html>
