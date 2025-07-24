@@ -1,144 +1,198 @@
 <!DOCTYPE html>
-<html lang="fr">
+<html lang='en' class=''>
+
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Défi Gainage - 30 Jours</title>
-  <style>
+
+  <meta charset='UTF-8'>
+  <title>CodePen Demo</title>
+
+  <meta name="robots" content="noindex">
+
+  <link rel="shortcut icon" type="image/x-icon" href="https://cpwebassets.codepen.io/assets/favicon/favicon-aec34940fbc1a6e787974dcd360f2c6b63348d4b1f4e06c77743096d55480f33.ico">
+  <link rel="mask-icon" href="https://cpwebassets.codepen.io/assets/favicon/logo-pin-b4b4269c16397ad2f0f7a01bcdf513a1994f4c94b8af2f191c09eb0d601762b1.svg" color="#111">
+  <link rel="canonical" href="https://codepen.io/cpddmuhu-the-builder/pen/NPGrOGm">
+
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Chivo+Mono:wght@500">
+  
+<link rel="stylesheet" href="https://public.codepenassets.com/css/normalize-5.0.0.min.css">
+
+  <style id="INLINE_PEN_STYLESHEET_ID">
     body {
-      font-family: Arial, sans-serif;
-      background: #f2f2f2;
-      padding: 20px;
-      text-align: center;
-    }
-    h1 {
-      color: #333;
-    }
-    #dayDisplay {
-      font-size: 20px;
-      margin: 15px 0;
-    }
-    #timer {
-      font-size: 28px;
-      margin-bottom: 20px;
-      font-weight: bold;
-    }
-    .calendar {
-      display: grid;
-      grid-template-columns: repeat(5, 1fr);
-      gap: 8px;
-      max-width: 400px;
-      margin: auto;
-    }
-    .day {
-      padding: 12px;
-      border-radius: 6px;
-      color: white;
-      font-weight: bold;
-      cursor: pointer;
-    }
-    .done { background-color: green; }
-    .missed { background-color: red; }
-    .upcoming { background-color: dodgerblue; cursor: default; }
-    .rest { background-color: gray; cursor: default; }
+  width: 100vw;
+  height: 100lvh;
+  background: #191616;
+  /* anciennement #141414 */
+  overflow: hidden;
+}
+
+webby-nominee {
+  --badge-size: min(30vw, 20rem);
+  position: absolute;
+  top: 0;
+  left: 0;
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  height: 100%;
+}
+webby-nominee:before {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  z-index: 2;
+  display: block;
+  width: 150%;
+  height: 140%;
+  background: radial-gradient(ellipse at 50% 55%, transparent 10%, #191616 50%);
+  /* anciennement transparent 10%, black 50% */
+  transform: translate3d(-50%, -50%, 0);
+  content: "";
+}
+webby-nominee:after {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  z-index: 5;
+  display: block;
+  width: 100%;
+  height: 100%;
+  background: radial-gradient(ellipse at 50% 75%, #3f5ab6 20%, transparent 75%);
+  mix-blend-mode: overlay;
+  transform: translate3d(-50%, -50%, 0);
+  content: "";
+}
+webby-nominee a {
+  position: absolute;
+  top: 0;
+  left: 0;
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+webby-nominee a:hover img {
+  transform: translate3d(0, -100%, 0) rotate(45deg);
+}
+webby-nominee a:hover .badge__vote {
+  transform: translate3d(0, 0, 0) rotate(0);
+}
+webby-nominee .badge {
+  position: absolute;
+  top: calc(50% - var(--badge-size) * 0.5);
+  left: calc(50% - var(--badge-size) * 0.5);
+  z-index: 10;
+  width: var(--badge-size);
+  height: var(--badge-size);
+  background: #000c;
+  border-radius: 999rem;
+  overflow: hidden;
+}
+webby-nominee .badge img {
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 2;
+  display: block;
+  width: 100%;
+  height: 100%;
+  transition: transform 1s cubic-bezier(0.87, 0, 0.13, 1);
+}
+webby-nominee .badge__vote {
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+  color: #3f5ab6;
+  /* anciennement #f40c3f */
+  font: 700 40px/1 "Chivo Mono", monospace;
+  text-transform: uppercase;
+  transform: translate3d(0, 75%, 0) rotate(45deg);
+  transition: transform 1s cubic-bezier(0.83, 0, 0.17, 1);
+}
+@-webkit-keyframes aura-glow {
+  0% {
+    background-position: 0 100%;
+  }
+  100% {
+    background-position: 0 300%;
+  }
+}
+@keyframes aura-glow {
+  0% {
+    background-position: 0 100%;
+  }
+  100% {
+    background-position: 0 300%;
+  }
+}
+webby-nominee .aura {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  z-index: 3;
+  width: calc(var(--badge-size) * 1.25);
+  height: calc(var(--badge-size) * 1.25);
+  background: linear-gradient(20deg, #3f5ab6, #ffffff20 16.5%, #3f5ab6 33%, #3f5ab620 49.5%, #3f5ab6 66%, #3f5ab660 85.5%, #ffffff 100%) 0 100%/100% 200%;
+  border-radius: 0 0 100% 100%;
+  filter: blur(50px);
+  mix-blend-mode: plus-lighter;
+  opacity: 0.75;
+  transform: translate3d(-50%, -50%, 0);
+  -webkit-animation: aura-glow 5s infinite linear;
+          animation: aura-glow 5s infinite linear;
+  pointer-events: none;
+}
+webby-nominee .overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 10;
+  width: 100%;
+  height: 100%;
+  background: repeating-linear-gradient(transparent, transparent 1px, #ffffff 1px, #ffffff 2px);
+  mix-blend-mode: overlay;
+  opacity: 0.5;
+  pointer-events: none;
+}
+webby-nominee canvas {
+  position: absolute;
+  top: 0;
+  left: 0;
+  display: block;
+  width: 100%;
+  height: 100%;
+}
   </style>
+
+  
+<script src="https://cpwebassets.codepen.io/assets/common/stopExecutionOnTimeout-2c7831bb44f98c1391d6a4ffda0e1fd302503391ca806e7fcc7b9b87197aec26.js"></script>
+<script src="https://cpwebassets.codepen.io/assets/editor/iframe/iframeConsoleRunner-6d8bf8b4b479137260842506acbb12717dace0823c023e08b96360e60b0840d9.js"></script>
+<script src="https://cpwebassets.codepen.io/assets/editor/iframe/iframeRefreshCSS-44fe83e49b63affec96918c9af88c0d80b209a862cf87ac46bc933074b8c557d.js"></script>
+<script src="https://cpwebassets.codepen.io/assets/editor/iframe/iframeRuntimeErrors-4f205f2c14e769b448bcf477de2938c681660d5038bc464e3700256713ebe261.js"></script>
 </head>
+
 <body>
-  <h1>Défi Gainage - 30 Jours</h1>
-  <div id="dayDisplay">Jour actuel : Calcul...</div>
-  <div id="timer">00:00</div>
-  <div class="calendar" id="calendar"></div>
+  <webby-nominee>
+  <div class="badge js-badge">
+    <a href="" target="_blank">
+      <img class="js-badge-img" src="https://vicdst.github.io/logo-grandest.png" alt="" />
 
-  <script>
-    const startDate = new Date("2025-07-16T00:00:00");
-    const today = new Date();
-    const times = [
-      20, 20, 30, 30, 40,
-      0, 45, 45, 60, 60,
-      60, 90, 0, 90, 90,
-      120, 120, 150, 0, 150,
-      150, 180, 180, 210, 210,
-      0, 240, 240, 270, 300
-    ];
+      <span class="badge__vote">
+        CR GRAND-EST
+      </span>
+    </a>
+  </div>
 
-    const calendarEl = document.getElementById("calendar");
-    const currentDay = Math.floor((today - startDate) / (1000 * 60 * 60 * 24)) + 1;
-    document.getElementById("dayDisplay").innerText = currentDay <= 30 ? 
-      `Jour actuel : ${currentDay}` : "Défi terminé !";
-
-    // Génère le calendrier avec stockage local
-    for (let i = 1; i <= 30; i++) {
-      const div = document.createElement("div");
-      div.classList.add("day");
-
-      const key = "day" + i;
-      const saved = localStorage.getItem(key);
-
-      const isRest = times[i - 1] === 0;
-      const inPast = i < currentDay;
-      const isToday = i === currentDay;
-      const inFuture = i > currentDay;
-
-      div.innerText = i;
-
-      if (isRest) {
-        div.classList.add("rest");
-        div.title = `Jour ${i} : Repos`;
-      } else if (inFuture) {
-        div.classList.add("upcoming");
-        div.title = `Jour ${i} : ${times[i - 1]} sec`;
-      } else {
-        if (saved === "done") {
-          div.classList.add("done");
-        } else if (saved === "missed") {
-          div.classList.add("missed");
-        } else {
-          div.classList.add(isToday ? "done" : "missed");
-          localStorage.setItem(key, isToday ? "done" : "missed");
-        }
-
-        div.title = `Jour ${i} : ${times[i - 1]} sec\n(Clique pour changer)`;
-
-        // Clique pour marquer comme fait ou raté
-        div.addEventListener("click", () => {
-          if (div.classList.contains("done")) {
-            div.classList.remove("done");
-            div.classList.add("missed");
-            localStorage.setItem(key, "missed");
-          } else {
-            div.classList.remove("missed");
-            div.classList.add("done");
-            localStorage.setItem(key, "done");
-          }
-        });
-      }
-
-      calendarEl.appendChild(div);
-    }
-
-    // Chronomètre
-    const timerEl = document.getElementById("timer");
-    let seconds = (currentDay >= 1 && currentDay <= 30) ? times[currentDay - 1] : 0;
-
-    function startTimer() {
-      if (seconds === 0) {
-        timerEl.innerText = "Repos aujourd'hui";
-        return;
-      }
-
-      let remaining = seconds;
-      const interval = setInterval(() => {
-        let min = Math.floor(remaining / 60);
-        let sec = remaining % 60;
-        timerEl.innerText = `${String(min).padStart(2, '0')}:${String(sec).padStart(2, '0')}`;
-        if (--remaining < 0) {
-          clearInterval(interval);
-          timerEl.innerText = "Terminé !";
-        }
-      }, 1000);
-    }
-
-    startTimer();
-  </script>
+  <div class="aura"></div>
+  <div class="overlay"></div>
+  <canvas class="js-canvas"></canvas>
+</webby-nominee>
+  
+  <script  type="module" src="https://cdpn.io/cpe/boomboom/pen.js?key=pen.js-8d934bd0-e108-83bc-a358-8e4eb7f6c8c9" crossorigin></script>
 </body>
+
 </html>
