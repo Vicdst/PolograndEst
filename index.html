@@ -1,103 +1,52 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-  <meta charset="UTF-8">
-  <title>Précommande - Goodies Kayak Polo</title>
+  <meta charset="UTF-8" />
+  <title>Précommande Goodies</title>
   <style>
-    @font-face {
-      font-family: "San Francisco";
-      font-style: normal;
-      font-weight: 400;
-      src: local("San Francisco"), local(".SFNS-Regular");
-    }
-
-    body {
+    html, body {
       margin: 0;
       padding: 0;
-      font-family: "San Francisco", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-      background-color: #121212;
-      color: #fff;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      height: 100vh;
+      height: 100%;
+      overflow: hidden;
     }
-
-    .popup {
-      background-color: #1e1e1e;
-      padding: 40px;
-      border-radius: 12px;
-      max-width: 400px;
+    #bandeau {
+      background-color: red;
+      color: white;
       text-align: center;
-      box-shadow: 0 0 20px rgba(255, 255, 255, 0.1);
-    }
-
-    .popup h2 {
-      margin-top: 0;
-      font-size: 26px;
-      color: #00e676;
-    }
-
-    .popup p {
-      font-size: 18px;
-      line-height: 1.5;
-      margin-bottom: 10px;
-    }
-
-    .popup .deadline {
-      margin-top: 10px;
+      padding: 10px;
+      font-weight: bold;
       font-size: 16px;
-      color: #ff9800;
+      position: relative;
+      z-index: 2;
     }
-
-    .btn {
-      margin-top: 30px;
-      padding: 12px 24px;
-      font-size: 16px;
-      background-color: #00e676;
-      color: #000;
+    #iframe-container {
+      position: absolute;
+      top: 60px; /* augmenté un peu la hauteur pour la mention */
+      bottom: 0;
+      left: 0;
+      right: 0;
+    }
+    iframe {
+      width: 100%;
+      height: 100%;
       border: none;
-      border-radius: 8px;
-      cursor: not-allowed;
-      opacity: 0.5;
-      pointer-events: none;
-      transition: 0.3s ease;
-      text-decoration: none;
-      display: inline-block;
     }
-
-    .btn.enabled {
-      cursor: pointer;
-      opacity: 1;
-      pointer-events: auto;
+    #mention {
+      font-weight: normal;
+      font-size: 12px;
+      margin-top: 5px;
+      font-style: italic;
     }
   </style>
 </head>
 <body>
-  <div class="popup">
-    <h2>Précommande en cours</h2>
-    <p>Les goodies sont en précommande.<br>
-    Livraison prévue <strong>mi-octobre</strong>.<br>
-    Merci de votre patience et de votre soutien 🙏</p>
-    <div class="deadline">📅 Fin des précommandes : <strong>25 août</strong></div>
-    <a href="https://mydukaan.io/polograndest/categories/goodies" class="btn" id="goBtn">Veuillez patienter...</a>
+  <div id="bandeau">
+    Ceci est une précommande, livraison courant Octobre. Date limite précommande : 25 août.
+    <div id="mention">Important : les couleurs et le positionnement du logo pourront changer.</div>
   </div>
-
-  <script>
-    const btn = document.getElementById('goBtn');
-    let seconds = 5;
-
-    const interval = setInterval(() => {
-      seconds--;
-      btn.textContent = seconds > 0 ? `Disponible dans ${seconds}s` : "Accéder à la boutique";
-      if (seconds <= 0) {
-        clearInterval(interval);
-        btn.classList.add("enabled");
-        btn.style.cursor = "pointer";
-        btn.style.pointerEvents = "auto";
-        btn.style.opacity = "1";
-      }
-    }, 1000);
-  </script>
+  <div id="iframe-container">
+    <iframe src="https://mydukaan.io/polograndest/categories/goodies" allowfullscreen></iframe>
+  </div>
 </body>
 </html>
