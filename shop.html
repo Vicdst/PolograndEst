@@ -2,60 +2,44 @@
 <html lang="fr">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Précommande Lycra Kayak Polo Grand Est</title>
+  <title>Précommande Goodies</title>
   <style>
-    body {
-      font-family: Arial, sans-serif;
+    html, body {
+      margin: 0;
+      padding: 0;
+      height: 100%;
+      overflow: hidden;
+    }
+    #bandeau {
+      background-color: red;
+      color: white;
       text-align: center;
-      padding: 20px;
-      background: #f7f7f7;
-    }
-    img {
-      max-width: 100%;
-      height: auto;
-      border-radius: 10px;
-      margin-bottom: 20px;
-    }
-    .info {
-      background: #fff;
-      padding: 20px;
-      margin: auto;
-      max-width: 600px;
-      box-shadow: 0 0 10px rgba(0,0,0,0.1);
-      border-radius: 12px;
-    }
-    .important {
-      color: #d9534f;
+      padding: 10px;
       font-weight: bold;
-      margin-top: 20px;
+      font-size: 16px;
+      position: relative;
+      z-index: 2;
+    }
+    #iframe-container {
+      position: absolute;
+      top: 40px; /* hauteur du bandeau */
+      bottom: 0;
+      left: 0;
+      right: 0;
+    }
+    iframe {
+      width: 100%;
+      height: 100%;
+      border: none;
     }
   </style>
 </head>
 <body>
-
-  <div class="info">
-    <h1>Précommande - Lycra Blanche Floquée</h1>
-    <h2>Kayak Polo Grand Est</h2>
-    
-    <img src="https://stripe-camo.global.ssl.fastly.net/55f54a2b2c60a1f04aef804bd462c1cef092bbad428909e7805eed380e43bc05/68747470733a2f2f66696c65732e7374726970652e636f6d2f6c696e6b732f4d44423859574e6a644638785546567a59336c43546a526d4e5774685631463566475a7358327870646d56665a6b464362304e6c5246647563335277645842305557526b646b6c575231644730303632597a4d4e6941/6d65726368616e745f69643d616363745f315055736379424e3466356b6157517926636c69656e743d5041594d454e545f50414745" alt="Lycra blanche Kayak Polo Grand Est">
-
-    <p><strong>⚠️ Ceci est une précommande.</strong><br>La production commencera une fois toutes les commandes enregistrées.</p>
-
-    <p>Réservez dès maintenant votre lycra officielle du <strong>Grand Est</strong> pour le kayak polo !</p>
-
-    <p class="important">
-      💵 Vous préférez payer en liquide ?<br>
-      C’est possible ! Entrez simplement le <strong>code promo <u>LIQUIDE</u></strong> au moment du paiement pour réserver sans payer en ligne.<br>
-      Vous serez recontacté·e pour finaliser votre commande en main propre.
-    </p>
-
-    <script async src="https://js.stripe.com/v3/buy-button.js"></script>
-    <stripe-buy-button
-      buy-button-id="buy_btn_1RTK66BN4f5kaWQyfj2q4pNg"
-      publishable-key="pk_live_51PUscyBN4f5kaWQykUSQZbxCONRCZEUu9DZVCOsDfBTKt6eS401SETNBwuHfvzc7b8H4dmhjpWvcM7FRqeaJlPui009m2yUHkU">
-    </stripe-buy-button>
+  <div id="bandeau">
+    Ceci est une précommande, livraison courant Octobre. Date limite précommande : 25 août.
   </div>
-
+  <div id="iframe-container">
+    <iframe src="https://mydukaan.io/polograndest/categories/goodies" allowfullscreen></iframe>
+  </div>
 </body>
 </html>
