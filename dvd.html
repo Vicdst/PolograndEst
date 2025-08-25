@@ -2,80 +2,152 @@
 <html lang="fr">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Animation Logo DVD Dynamique</title>
+  <title>Kayak Club Thionville – 100 km Live</title>
+  <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css"/>
   <style>
-    html, body {
-      margin: 0;
-      padding: 0;
-      overflow: hidden;
-      background: black;
-      height: 100%;
-      width: 100%;
+    html, body { margin:0; height:100%; overflow:hidden; font-family:'Segoe UI', sans-serif; background:#000; }
+    #map { width:100%; height:100%; }
+
+    .overlay {
+      position:absolute; top:0; left:0; width:100%; height:100%;
+      display:flex; flex-direction:column; justify-content:space-between;
+      z-index:9999; pointer-events:none;
     }
 
-    #container {
-      position: relative;
-      width: 100%;
-      height: 100%;
-      border: 5px solid black; /* Bord noir visible autour de l'écran */
-      box-sizing: border-box;
+    .header {
+      background: rgba(0,0,0,0.75);
+      padding:15px 25px; color:#fff; font-size:20px; font-weight:600;
+      display:flex; align-items:center; justify-content:center; gap:15px;
+      pointer-events:auto;
+    }
+    .header img {
+      height:60px; object-fit:contain; display:block;
+    }
+    .header-text { display:flex; flex-direction:column; justify-content:center; text-align:center; }
+
+    .footer {
+      background: rgba(0,0,0,0.8);
+      padding:15px; color:#fff;
+      display:flex; justify-content:space-between; align-items:center;
+      font-size:16px; flex-wrap:wrap; pointer-events:auto;
     }
 
-    #logo {
-      position: absolute;
-      width: 150px;
-    }
+    .stat { text-align:center; margin:5px 10px; min-width:90px; }
+    .stat span { display:block; font-size:20px; font-weight:bold; }
+
+    .progress { flex:1; height:16px; background:rgba(255,255,255,0.15); border-radius:12px; overflow:hidden; margin:0 10px; }
+    .progress-bar { height:100%; width:0%; background:linear-gradient(90deg,#fff,#ccc); border-radius:12px; transition: width 0.5s; }
   </style>
 </head>
 <body>
-  <div id="container">
-    <img id="logo" src="images/logo.png" alt="Logo DVD">
+  <div id="map"></div>
+
+  <div class="overlay">
+    <div class="header">
+      <img src="https://polograndest.neocities.org/ChatGPT%20Image%2024%20août%202025%20à%2015_06_24.png" alt="logo"/>
+      <div class="header-text">
+        Kayak Club Thionville<br>Défi 100 km
+      </div>
+    </div>
+
+    <div class="footer">
+      <div class="stat">Heure<span id="clock">--:--:--</span></div>
+      <div class="stat">Temps restant<span id="remaining">--h--</span></div>
+      <div class="stat">Km parcourus<span id="done">0</span></div>
+      <div class="progress"><div class="progress-bar" id="progressBar"></div></div>
+      <div class="stat">Km restants<span id="left">100</span></div>
+    </div>
   </div>
 
+  <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
   <script>
-    // Variables
-    const logo = document.getElementById('logo');
-    const container = document.getElementById('container');
-    const logoWidth = logo.width;
-    const logoHeight = logo.height;
+    const loopCoords = [
+      [49.360688824905566, 6.176492200894912],
+      [49.362469616687214, 6.18108896398577],
+      [49.36265960904064, 6.183162003230371],
+      [49.359355587971336, 6.183466690004309],
+      [49.358373268582, 6.183024894012776],
+      [49.357351238705256, 6.178424123492548],
+      [49.3522209233404, 6.170700313233773],
+      [49.35030519988572, 6.168705361079375],
+      [49.346890504113034, 6.169190270827803],
+      [49.34577729215199, 6.168774633900579],
+      [49.34865053109127, 6.162262988707398],
+      [49.350365368611406, 6.161662624256962],
+      [49.3526066012839, 6.1628864439210815],
+      [49.355674968999494, 6.168197360374645],
+      [49.360688824905566, 6.176492200894912]
+    ];
 
-    let x = Math.random() * (window.innerWidth - logoWidth - 10); // Position X initiale aléatoire
-    let y = Math.random() * (window.innerHeight - logoHeight - 10); // Position Y initiale aléatoire
-    let angle = Math.random() * 2 * Math.PI; // Angle initial aléatoire
-    let speed = 5; // Vitesse de déplacement du logo
-    let dx = Math.cos(angle) * speed; // Vitesse en X
-    let dy = Math.sin(angle) * speed; // Vitesse en Y
+    const map = L.map('map', { zoomControl:false, dragging:false }).setView([49.3575, 6.1796], 15);
 
-    // Fonction d'animation
-    function moveLogo() {
-      // Déplacement du logo
-      x += dx;
-      y += dy;
+    L.tileLayer('https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png', {
+      attribution: '© OpenStreetMap, © Carto', subdomains: 'abcd'
+    }).addTo(map);
 
-      // Collision avec les bords de l'écran (rebond)
-      if (x <= 5 || x >= window.innerWidth - logoWidth - 5) {
-        dx = -dx; // Inverse la direction horizontale
-        angle = Math.random() * 2 * Math.PI; // Change l'angle
-        dx = Math.cos(angle) * speed; // Applique le nouvel angle
+    const polyline = L.polyline(loopCoords, { color:'#ffffff', weight:6, opacity:0.9 }).addTo(map);
+    map.fitBounds(polyline.getBounds(), { padding:[30,30] });
+
+    let marker = L.circleMarker([49.3575, 6.1796], { radius:10, color:'#ff0000', fillColor:'#ff4444', fillOpacity:1 }).addTo(map);
+    marker.bindTooltip("Kayak – En direct", {permanent:true, offset:[15,0]});
+
+    const totalKm = 100;
+    let kmDone = 0;
+    const startTime = new Date();
+    const challengeDuration = 24*60*60*1000;
+
+    const apiUrl = "http://88.185.22.1:40000/positions"; // proxy sur port 40000
+
+    async function fetchPosition() {
+      try {
+        console.log("Fetch vers le proxy...");
+        const res = await fetch(apiUrl);
+        if (!res.ok) {
+          console.log("Erreur fetch:", res.status, res.statusText);
+          return;
+        }
+        const data = await res.json();
+        console.log("Données reçues du proxy:", data);
+
+        if(data.length > 0){
+          const last = data[data.length-1];
+          const lat = last.latitude;
+          const lon = last.longitude;
+
+          marker.setLatLng([lat, lon]);
+          map.setView([lat, lon]);
+
+          kmDone = Math.min(totalKm, kmDone + 0.02);
+        }
+      } catch(e){
+        console.log("Erreur fetchPosition:", e);
       }
-
-      if (y <= 5 || y >= window.innerHeight - logoHeight - 5) {
-        dy = -dy; // Inverse la direction verticale
-        angle = Math.random() * 2 * Math.PI; // Change l'angle
-        dy = Math.sin(angle) * speed; // Applique le nouvel angle
-      }
-
-      // Mise à jour de la position de l'image
-      logo.style.left = `${x}px`;
-      logo.style.top = `${y}px`;
-
-      // Rappel de la fonction pour la prochaine frame
-      requestAnimationFrame(moveLogo);
     }
 
-    // Démarrer l'animation
-    moveLogo();
+    function updateUI(){
+      const now = new Date();
+      document.getElementById("clock").textContent = now.toLocaleTimeString();
+
+      const elapsed = now - startTime;
+      const remaining = challengeDuration - elapsed;
+      if (remaining > 0){
+        const h = Math.floor(remaining/3600000);
+        const m = Math.floor((remaining%3600000)/60000);
+        document.getElementById("remaining").textContent = h+"h "+m+"m";
+      } else document.getElementById("remaining").textContent="Terminé";
+
+      document.getElementById("done").textContent = kmDone.toFixed(1);
+      const kmLeft = (totalKm - kmDone).toFixed(1);
+      document.getElementById("left").textContent = kmLeft;
+
+      const pct = (kmDone/totalKm)*100;
+      document.getElementById("progressBar").style.width = pct+"%";
+    }
+
+    setInterval(() => {
+      fetchPosition();
+      updateUI();
+    }, 1000);
   </script>
 </body>
 </html>
